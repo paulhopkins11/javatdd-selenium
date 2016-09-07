@@ -7,7 +7,6 @@
 	<packaging>war</packaging>
 
 	<build>
-		<sourceDirectory>src</sourceDirectory>
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -21,8 +20,17 @@
 				<artifactId>maven-war-plugin</artifactId>
 				<version>2.6</version>
 				<configuration>
-					<warSourceDirectory>WebContent</warSourceDirectory>
+					<warSourceDirectory>src/main/webapp</warSourceDirectory>
 					<failOnMissingWebXml>false</failOnMissingWebXml>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.tomcat.maven</groupId>
+				<artifactId>tomcat7-maven-plugin</artifactId>
+				<version>2.1</version>
+				<configuration>
+					<port>8081</port>
+					<path>/</path>
 				</configuration>
 			</plugin>
 		</plugins>
@@ -35,9 +43,15 @@
 			<version>3.1.0</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.apache.derby/derbyclient -->
+<!-- 		<dependency> -->
+<!-- 			<groupId>org.apache.derby</groupId> -->
+<!-- 			<artifactId>derbyclient</artifactId> -->
+<!-- 			<version>10.12.1.1</version> -->
+<!-- 		</dependency> -->
+		<!-- https://mvnrepository.com/artifact/org.apache.derby/derby -->
 		<dependency>
 			<groupId>org.apache.derby</groupId>
-			<artifactId>derbyclient</artifactId>
+			<artifactId>derby</artifactId>
 			<version>10.12.1.1</version>
 		</dependency>
 
