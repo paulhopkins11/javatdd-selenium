@@ -59,10 +59,8 @@ public class CatalogServlet extends HttpServlet {
 		Vector products = new Vector();
 
 		try {
-			String jdbcDriver = System.getProperty("jdbc.driver", "org.apache.derby.jdbc.ClientDriver");
-			Class.forName(jdbcDriver);
-			String jdbcUrl = System.getProperty("jdbc.url", "jdbc:derby:sample");
-			con = DriverManager.getConnection(jdbcUrl);
+			Class.forName(JdbcStringUtils.getJdbcDriverClass());
+			con = DriverManager.getConnection(JdbcStringUtils.getJdbcUrl());
 			Statement rd = con.createStatement();
 			ResultSet rs = rd.executeQuery("SELECT * FROM MySchema.Products");
 
@@ -97,8 +95,8 @@ public class CatalogServlet extends HttpServlet {
 		Connection con = null;
 
 		try {
-			Class.forName("org.apache.derby.jdbc.ClientDriver");
-			con = DriverManager.getConnection("jdbc:derby://localhost:1527/C:/JavaTdd/Databases/OnlineRetailerDb");
+			Class.forName(JdbcStringUtils.getJdbcDriverClass());
+			con = DriverManager.getConnection(JdbcStringUtils.getJdbcUrl());
 			Statement ex = con.createStatement();
 			ResultSet rs = ex.executeQuery("SELECT * FROM MySchema.Products");
 
@@ -164,8 +162,8 @@ public class CatalogServlet extends HttpServlet {
 		Connection con = null;
 		if (basket != null) {
 			try {
-				Class.forName("org.apache.derby.jdbc.ClientDriver");
-				con = DriverManager.getConnection("jdbc:derby://localhost:1527/C:/JavaTdd/Databases/OnlineRetailerDb");
+				Class.forName(JdbcStringUtils.getJdbcDriverClass());
+				con = DriverManager.getConnection(JdbcStringUtils.getJdbcUrl());
 				Statement ex = con.createStatement();
 				String customerID = (String) session.getAttribute("CustomerID");
 				Enumeration productIDs = basket.keys();

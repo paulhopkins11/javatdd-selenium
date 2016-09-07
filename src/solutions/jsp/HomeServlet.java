@@ -40,10 +40,8 @@ public class HomeServlet extends HttpServlet {
 				for (int i = 0; i < rd.length; ++i) {
 					if (rd[i].getName().equals("CustomerID")) {
 						String id = rd[i].getValue();
-						String jdbcDriver = System.getProperty("jdbc.driver", "org.apache.derby.jdbc.ClientDriver");
-						Class.forName(jdbcDriver);
-						String jdbcUrl = System.getProperty("jdbc.url", "jdbc:derby:sample");
-						con = DriverManager.getConnection(jdbcUrl);
+						Class.forName(JdbcStringUtils.getJdbcDriverClass());
+						con = DriverManager.getConnection(JdbcStringUtils.getJdbcUrl());
 						Statement stmt = con.createStatement();
 						ResultSet rs = stmt
 								.executeQuery("SELECT Name, Address FROM MySchema.Customers WHERE CustomerID=" + id);

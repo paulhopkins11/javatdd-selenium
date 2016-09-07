@@ -35,10 +35,8 @@ public class EnrolServlet extends HttpServlet {
 			String ex = request.getParameter("CustomerID");
 			String name = request.getParameter("Name");
 			String address = request.getParameter("Address");
-			String jdbcDriver = System.getProperty("jdbc.driver", "org.apache.derby.jdbc.ClientDriver");
-			Class.forName(jdbcDriver);
-			String jdbcUrl = System.getProperty("jdbc.url", "jdbc:derby:sample");
-			con = DriverManager.getConnection(jdbcUrl);
+			Class.forName(JdbcStringUtils.getJdbcDriverClass());
+			con = DriverManager.getConnection(JdbcStringUtils.getJdbcUrl());
 			Statement stmt = con.createStatement();
 			stmt.executeUpdate("INSERT INTO MySchema.Customers VALUES (" + ex + ",  " + "\'" + name + "\', " + "\'"
 					+ address + "\')");
